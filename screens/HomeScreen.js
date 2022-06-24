@@ -1,7 +1,8 @@
 import { useNavigation } from '@react-navigation/core'
 import React from 'react'
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { StyleSheet, Text, TouchableOpacity, View, SafeAreaView, ScrollView } from 'react-native'
 import { auth } from '../firebase'
+import News from './News'
 
 const HomeScreen = () => {
   const navigation = useNavigation()
@@ -16,15 +17,18 @@ const HomeScreen = () => {
   }
 
   return (
-    <View style={styles.container}>
-      <Text>Email: {auth.currentUser?.email}</Text>
-      <TouchableOpacity
-        onPress={handleSignOut}
-        style={styles.button}
-      >
-        <Text style={styles.buttonText}>Sign out</Text>
-      </TouchableOpacity>
-    </View>
+    <ScrollView>
+      <SafeAreaView style={styles.container}>
+        <News />
+        <Text>Email: {auth.currentUser?.email}</Text>
+        <TouchableOpacity
+          onPress={handleSignOut}
+          style={styles.button}
+        >
+          <Text style={styles.buttonText}>Sign out</Text>
+        </TouchableOpacity>
+      </SafeAreaView>
+    </ScrollView>
   )
 }
 
@@ -33,8 +37,8 @@ export default HomeScreen
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    paddingHorizontal: 10,
   },
    button: {
     backgroundColor: '#0782F9',

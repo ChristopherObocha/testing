@@ -3,13 +3,17 @@ import { View, Text } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import LoginScreen from "./screens/LoginScreen";
+import Login from "./screens/Login";
 import HomeScreen from "./screens/HomeScreen";
 import SignUpScreen from "./screens/SignUp";
+import Onboarding from "./screens/Onboarding";
 
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
 import 'firebase/compat/firestore';
 import News from './screens/News';
+// import { firebase } from './config/config';
+// // import { auth } from '../firebase';
 
 const Stack = createNativeStackNavigator();
 
@@ -45,16 +49,16 @@ firebase.auth().onAuthStateChanged((user) => {
 });
 
   return (
-    // <NavigationContainer>
-    //   {isLoggedIn ? <Stack.Navigator>
-    //     <Stack.Screen name="Home" component={HomeScreen} options={{ headerShown: false }} />
-    //   </Stack.Navigator> :
-    //     <Stack.Navigator>
-    //       <Stack.Screen name="Login" component={LoginScreen} options={{ headerShown: false }} />
-    //       <Stack.Screen name="Sign Up" component={SignUpScreen} options={{ headerShown: false }} />
-    //     </Stack.Navigator>}
-    // </NavigationContainer>
-    <News />
+    <NavigationContainer>
+      {isLoggedIn ? <Stack.Navigator>
+        <Stack.Screen name="Home" component={HomeScreen} options={{ headerShown: false }} />
+      </Stack.Navigator> :
+        <Stack.Navigator>
+          <Stack.Screen name="Onboarding" component={Onboarding} options={{ headerShown: false }} />
+          <Stack.Screen name="Login" component={Login} options={{ headerShown: false }} />
+          <Stack.Screen name="Sign Up" component={SignUpScreen} options={{ headerShown: false }} />
+        </Stack.Navigator>}
+    </NavigationContainer>
   );
 }
 

@@ -26,6 +26,17 @@ if (firebase.apps.length === 0) {
   app = firebase.app()
 }
 
-const auth = firebase.auth()
+//added this myself
+// const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+// firebase.auth().onAuthStateChanged((user) => {
+//   if (user != null) {
+//     setIsLoggedIn(true)
+//   } else {
+//     setIsLoggedIn(false);
+//   }
+// });
+
+const auth = firebase.auth();
 
 export { auth };

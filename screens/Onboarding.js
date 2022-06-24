@@ -1,8 +1,11 @@
 import * as React from 'react';
 import { StatusBar, Animated, FlatList, Text, Image, View, StyleSheet, Dimensions } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import { useNavigation } from '@react-navigation/native';
+import LoginScreen from './LoginScreen';
 
 const {width, height} = Dimensions.get('screen');
+
 // https://www.flaticon.com/packs/retro-wave
 // inspiration: https://dribbble.com/shots/11164698-Onboarding-screens-animation
 // https://twitter.com/mironcatalin/status/1321180191935373312
@@ -124,6 +127,24 @@ const Square = ({ scrollX }) => {
   );
 };
 
+const Footer = () => {
+  const navigation = useNavigation();
+  return (
+    <View style={styles.btnContainer}>
+      <TouchableOpacity onPress={() => navigation.navigate("Sign Up")}>
+        <View style={styles.btn}>
+          <Text style={{ fontWeight: '500' }}>Register</Text>  
+        </View>
+      </TouchableOpacity>
+      <TouchableOpacity onPress={() => navigation.navigate("Login")}>
+        <View style={styles.btn}>
+          <Text style={{ fontWeight: '500' }}>Login</Text>  
+        </View>
+      </TouchableOpacity>
+    </View>
+  );
+}
+
 export default function Onboarding() {
   const scrollX = React.useRef(new Animated.Value(0)).current;
 
@@ -169,15 +190,34 @@ export default function Onboarding() {
           );
         }}
       />
+      <Footer />
       <Indicator scrollX={scrollX} />
     </View>
   );
 }
+
+
 const styles = StyleSheet.create({
 container: {
 flex: 1,
 backgroundColor: '#fff',
 alignItems: 'center',
 justifyContent: 'center',
+},
+btn: {
+  // position: 'absolute',
+  width: 110, 
+  height: 55,
+  justifyContent: 'center',
+  alignItems: 'center',
+  borderRadius: 15,
+  marginHorizontal: 25,
+  backgroundColor: 'white',
+},
+btnContainer: {
+  position: 'absolute',
+  top: height * 0.85,
+  marginBottom: 40, 
+  flexDirection: 'row',
 },
 });

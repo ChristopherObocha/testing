@@ -1,7 +1,8 @@
 import { useNavigation } from '@react-navigation/core'
 import React, { useEffect, useState } from 'react'
-import { KeyboardAvoidingView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
+import { KeyboardAvoidingView, StyleSheet, Text, TextInput, TouchableOpacity, View, Image } from 'react-native'
 import { auth } from '../firebase'
+import { firebase } from '../config/config';
 
 const LoginScreen = () => {
   const [email, setEmail] = useState('')
@@ -44,6 +45,9 @@ const LoginScreen = () => {
       style={styles.container}
       behavior="padding"
     >
+      <View style={styles.image}>
+        <Image source={require("../assets/loginicon.svg")} />
+      </View>
       <View style={styles.inputContainer}>
         <TextInput
           placeholder="Email"
@@ -125,4 +129,7 @@ const styles = StyleSheet.create({
     fontWeight: '700',
     fontSize: 16,
   },
+  image: {
+    height: 70,
+  }
 })
